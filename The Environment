@@ -1,8 +1,4 @@
 
-
-
-
-
 def draw_environment():
     world_size=2000
     half_world=world_size/2
