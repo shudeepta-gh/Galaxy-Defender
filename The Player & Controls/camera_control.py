@@ -1,4 +1,15 @@
 
+
+def handle_camera_toggle():
+    global camera_mode
+    camera_mode=1-camera_mode
+    if camera_mode==1:
+        mode_name='First Person'
+    else:
+        mode_name='Third Person'
+    print(f"Camera Mode Switched:{mode_name}")
+
+
 def update_camera_view():
     global camera_mode,ship_pos,camera_angle_h,camera_height,camera_distance
     global cheat_mode,enemies
