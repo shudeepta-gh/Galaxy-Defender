@@ -93,3 +93,22 @@ def draw_world_objects():
     draw_grey_asteroids()
     draw_projectiles()
     draw_powerups()
+
+def update_logic():
+    global frame_count,game_over
+    if game_over:
+        return
+    frame_count+=1
+
+    update_player_movement()
+    update_black_hole()
+    spawn_enemies()
+    spawn_asteroids()
+    update_asteroids()
+    update_player_bullets()
+    update_enemy_projectiles()
+    update_flares()
+    update_enemies()
+
+    update_cheat_mode()
+    update_powerups()
