@@ -1,3 +1,13 @@
+def update_player_bullets():
+    global spaceship_bullets,ship_pos
+    for b in spaceship_bullets:
+        b['pos'][0]+=b['vel'][0]
+        b['pos'][1]+=b['vel'][1]
+        b['pos'][2]+=b['vel'][2]
+        if get_distance(b['pos'],ship_pos)>1500:
+            if b in spaceship_bullets:
+                spaceship_bullets.remove(b)
+
 
 def handle_shooting(x, y):
     global ammo,cheat_mode,spaceship_bullets,ship_pos
