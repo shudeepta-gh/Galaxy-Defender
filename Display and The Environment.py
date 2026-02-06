@@ -1,4 +1,5 @@
 
+w_width,w_height=1000,800
 def draw_environment():
     world_size=2000
     half_world=world_size/2
@@ -43,3 +44,47 @@ def draw_environment():
     glPopMatrix()
 
     glPopMatrix()
+
+
+
+def display():
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+    glLoadIdentity()
+    update_camera_view()
+    draw_world_objects()
+    draw_hud()
+    glutSwapBuffers()
+
+def idle():
+    global last_time,frame_delay
+    current_time=time.time()
+    elapsed=current_time-last_time
+    if elapsed>=frame_delay:
+        update_logic()
+        glutPostRedisplay()
+        last_time=current_time
+
+def init():
+    glEnable(GL_DEPTH_TEST)
+    glMatrixMode(GL_PROJECTION)
+    gluPerspective(fovY,w_width/w_height,1,2000)
+    glMatrixMode(GL_MODELVIEW)
+
+def main():
+    global last_time
+    glutInit()
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB|GLUT_DEPTH)
+    glutInitWindowSize(w_width,w_height)
+    glutCreateWindow(b"Galaxy Defender")
+    init()
+    glutDisplayFunc(display)
+    glutIdleFunc(idle)
+    glutKeyboardFunc(keyboardListener)
+    glutKeyboardUpFunc(keyboardUpListener)
+    glutSpecialFunc(specialListener)
+    glutMouseFunc(mouseListener)
+    last_time=time.time()
+    glutMainLoop()
+
+if __name__=="__main__":
+    main()
